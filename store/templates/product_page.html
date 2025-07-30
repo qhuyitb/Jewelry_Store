@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Product Page
+{% endblock %}
+
+{% block content %}   
+<!-- Tag-->
+<div class="container my-5">
+  <div class="d-flex justify-content-center flex-wrap gap-2">
+    <a href="{{ url_for('product_page', category = 'all') }}" class="btn btn-outline-dark rounded-pill px-4 py-2">All</a>
+    {% for cat in categories %}
+        
+        <a href="{{ url_for('product_page',category = cat.category) }}" class="btn btn-outline-dark rounded-pill px-4 py-2 {% if cat.category == selected_category %}active {% endif %}">{{ cat.category }}</a>
+
+    {% endfor %}
+  </div>
+</div>
+
+
+<!-- Section-->
+
+<section class="py-2">
+    <div class="container px-4 px-lg-5 mt-5">
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            {% for product in products %}
+                
+                <div class="col mb-5">
+                    <div class="card h-100">
+                        <!-- Product image-->
+                        {% if product.image_url %}
+                            <img class="card-img-top" src="{{ url_for('static', filename='images/products/' + product.image_url) }}" alt="..." />
+                        {% endif %}
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{ product.name }} </h5>
+                                <!-- Product price-->
+                                ${{ product.price }}<br>
+                                <!--  Product description -->
+                                {% if product.description != None %}
+                                    {{ product.description }}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- Product actions-->
+                        <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                            <div class="d-flex justify-content-between">
+                               <form action="{{ url_for('create_checkout_session') }}" method="POST">
+                                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                                    <button type="submit" class="btn btn-outline-dark mt-auto">Buy Now</button>
+                                </form>
+                                
+                                <a class="btn btn-outline-dark mt-auto" href="#">
+                                    <i class="bi bi-cart-plus-fill me-1"></i>Add to Cart
+                                </a>
+                            </div>
+                        </div>  
+                    </div>
+                </div>
+                
+            {% endfor %}
+            
+        </div>
+    </div>
+</section>
+
+
+{% endblock %}

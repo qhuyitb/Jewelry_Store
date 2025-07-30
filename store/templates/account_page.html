@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+    Account Page
+{% endblock %}
+{% block extra_head %}
+<link href="/static/css/account.css" rel="stylesheet" />
+{% endblock %}
+
+
+
+{% block content %}
+
+{% with messages = get_flashed_messages(with_categories=True) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show mt-2" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
+<div class="container rounded bg-white mt-5 mb-5">
+    
+
+    <div class="row">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"><span >{{ current_user.name }}</span><span class="text-black-50">{{ current_user.email }}</span><span> </span></div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Info</h4>
+                </div>
+                <form method="POST">
+                    {{ info_form.hidden_tag() }}
+                    <div class="row mt-3">
+                    
+                        <div class="col-md-12">
+                            {{info_form.name.label(class="labels")}}
+                            {{ info_form.name(class="form-control") }}
+                            {% for err in info_form.name.errors %}
+                                <div class="text-danger small">{{ err }}</div>
+                            {% endfor %}
+                            
+                            
+   
+
+                        </div>
+
+                        <div class="col-md-12">
+                            {{info_form.age.label(class="labels")}}
+                            {{ info_form.age(class="form-control", placeholder="Age") }}
+
+                        </div>
+
+                        <div class="col-md-12">
+                            {{info_form.gender.label(class="labels")}}
+                            {{ info_form.gender(class="form-control", placeholder="Gender") }}
+
+                        </div>
+
+                        <div class="col-md-12">
+                            {{info_form.email.label(class="labels")}}
+                            {{ info_form.email(class="form-control") }}
+                            {% for err in info_form.email.errors %}
+                                <div class="text-danger small">{{ err }}</div>
+                            {% endfor %}
+                           
+
+                        </div>
+
+                        <div class="col-md-12">
+                            {{info_form.address.label(class="labels")}}
+                            {{ info_form.address(class="form-control", placeholder="Address") }}
+
+                        </div>
+                        
+                        
+
+                        
+                    </div>
+                    <div class="mt-5 text-center">
+                        {{ info_form.submit(class="btn btn-primary profile-button ") }}
+
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <form method="POST">
+                {{ pw_form.hidden_tag() }}
+                <div class="p-3 py-5">
+                    <div class="d-flex justify-content-between align-items-center experience"><span>Change Password</span></div><br>
+                    <div class="col-md-12">
+                        {{ pw_form.old_password.label(class="labels") }}
+                        {{ pw_form.old_password(class="form-control", placeholder="Old Password") }}
+
+                    </div> <br>
+
+                    <div class="col-md-12">
+                        {{ pw_form.new_password.label(class="labels") }}
+                        {{ pw_form.new_password(class="form-control", placeholder="New Password") }}
+
+                    </div> <br>
+
+                    <div class="col-md-12">
+                        {{ pw_form.confirm_password.label(class="labels") }}
+                        {{ pw_form.confirm_password(class="form-control", placeholder="Confirm Password") }}
+
+                    </div> <br>
+                    
+                </div>
+                <div class="mt-0 text-center">
+                        {{ pw_form.submit(class="btn btn-primary profile-button") }}
+
+                </div>
+            </form>
+                
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
+        
+{% endblock %}

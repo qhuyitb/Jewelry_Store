@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+    About Page
+{% endblock %}
+
+{% block content %} 
+<div class="container py-5">
+<div class="row align-items-center">
+    <!-- Nội dung -->
+    <div class="col-md-6">
+        <h2 class="fw-bold mb-3">Bộ sưu tập trang sức cao cấp</h2>
+        <p class="mb-4">
+            Khám phá vẻ đẹp sang trọng và tinh tế với các thiết kế độc quyền từ chúng tôi. Hoàn hảo cho mọi dịp đặc biệt của bạn.
+        </p>
+        <p> 
+            Chúng tôi đặc biệt tôn trọng sự đa dạng và cá nhân hóa. Do đó, chúng tôi cung cấp cả những món trang sức đơn giản và tinh tế cho những ai yêu thích phong cách tối giản, đến những thiết kế phức tạp và lộng lẫy cho những ai muốn thu hút mọi ánh nhìn.
+        </p>
+        <a href="#" class="btn btn-dark btn-lg rounded-pill">
+            Explore now <i class="bi bi-arrow-right ms-2"></i>
+        </a>
+    </div>
+    <!-- Ảnh -->
+    <div class="col-md-6 mb-4 mb-md-0">
+      <img src="{{ url_for('static', filename='images/about/about_banner.jpg') }}" class="img-fluid rounded shadow" alt="Trang sức đẹp">
+    </div>
+
+  </div>
+</div>
+{% endblock %}

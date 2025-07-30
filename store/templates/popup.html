@@ -1,0 +1,33 @@
+<!-- Nút mua ngay -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#buyNowModal">
+  Mua ngay
+</button>
+
+<!-- Modal -->
+<div class="modal fade" id="buyNowModal" tabindex="-1" aria-labelledby="buyNowModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <form method="POST" action="/add_to_cart">  <!-- bạn thay đổi action nếu cần -->
+        <div class="modal-header">
+          <h5 class="modal-title" id="buyNowModalLabel">Chọn số lượng</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Đóng"></button>
+        </div>
+
+        <div class="modal-body">
+          <input type="hidden" name="product_id" value="{{ product.id }}"> <!-- truyền id sản phẩm -->
+          <div class="mb-3">
+            <label for="quantity" class="form-label">Số lượng</label>
+            <input type="number" class="form-control" name="quantity" id="quantity" min="1" value="1" required>
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-success">Xác nhận mua</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
