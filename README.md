@@ -5,7 +5,7 @@ Jewelry Store là một ứng dụng web mô phỏng cửa hàng trực tuyến,
 ---
 
 ## 🚀 Tính năng chính
-
+- 🛡️ Phân quyền người dùng (user / admin) và bảo vệ route quản trị
 - 🧾 Quản lý sản phẩm (thêm, sửa, xóa)
 - 🛒 Giỏ hàng và đặt hàng
 - 👤 Đăng ký / đăng nhập / mã hóa mật khẩu (`bcrypt`)
